@@ -4,7 +4,6 @@
 namespace Tests;
 
 use Faker\Generator;
-use Tests\fixtures\MockHandler;
 
 /**
  * Class Faker

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tests\fixtures;
+namespace Tests;
 
 
 use GuzzleHttp\Ring\Future\CompletedFutureArray;
@@ -37,10 +37,10 @@ class MockHandler extends \GuzzleHttp\Ring\Client\MockHandler
     public function __invoke(array $request)
     {
         $response = parent::__invoke($request);
-
+        
         $transaction = [
-            'request' => $request,
-            'response' => $response,
+            'request' => TransactionRequest::fromArray($request),
+            'response' => TransactionRequest::fromArray($request),
         ];
 
         $this->transactions[] = $transaction;
