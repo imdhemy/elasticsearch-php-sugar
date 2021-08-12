@@ -4,6 +4,14 @@
 namespace Tests\fixtures;
 
 
+use GuzzleHttp\Ring\Future\CompletedFutureArray;
+use GuzzleHttp\Ring\Future\FutureArrayInterface;
+
+/**
+ * Class MockHandler
+ * You can use this handler for testing purposes
+ * @package Tests\fixtures
+ */
 class MockHandler extends \GuzzleHttp\Ring\Client\MockHandler
 {
     /**
@@ -21,6 +29,11 @@ class MockHandler extends \GuzzleHttp\Ring\Client\MockHandler
         $this->transactions = [];
     }
 
+    /**
+     * Called when trying to call the handler object as a function
+     * @param array $request
+     * @return callable|CompletedFutureArray|FutureArrayInterface
+     */
     public function __invoke(array $request)
     {
         $response = parent::__invoke($request);
@@ -36,6 +49,8 @@ class MockHandler extends \GuzzleHttp\Ring\Client\MockHandler
     }
 
     /**
+     * Get List of all transactions committed by the client
+     * using this handler
      * @return array
      */
     public function getTransactions(): array
