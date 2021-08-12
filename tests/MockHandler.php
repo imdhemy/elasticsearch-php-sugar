@@ -37,13 +37,11 @@ class MockHandler extends \GuzzleHttp\Ring\Client\MockHandler
     public function __invoke(array $request)
     {
         $response = parent::__invoke($request);
-        
-        $transaction = [
-            'request' => TransactionRequest::fromArray($request),
-            'response' => TransactionRequest::fromArray($request),
-        ];
 
-        $this->transactions[] = $transaction;
+        $this->transactions[] = new Transaction(
+            TransactionRequest::fromArray($request),
+            TransactionResponse::fromCompletedFutureArray($response)
+        );
 
         return $response;
     }
@@ -51,7 +49,7 @@ class MockHandler extends \GuzzleHttp\Ring\Client\MockHandler
     /**
      * Get List of all transactions committed by the client
      * using this handler
-     * @return array
+     * @return array|Transaction[]
      */
     public function getTransactions(): array
     {

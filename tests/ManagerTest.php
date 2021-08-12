@@ -27,10 +27,21 @@ class ManagerTest extends TestCase
         $client = new Client($baseClient);
         $manager = new Manager($client);
 
-        $index = new Index($this->faker->index());
+        $index = new Index($indexName);
 
         $manager->createIndex($index);
 
-        dd($mockHandler->getTransactions());
+        $transaction = $mockHandler->getTransactions()[0];
+
+        $this->assertEquals(sprintf('/%s', $indexName), $transaction->getRequest()->getUri());
+        $this->assertEquals('PUT', $transaction->getRequest()->getMethod());
+        $this->assertEquals(
+            [
+                'acknowledged' => true,
+                'shards_acknowledged' => true,
+                'index' => $indexName,
+            ],
+            $transaction->getResponse()->getBody()
+        );
     }
 }
