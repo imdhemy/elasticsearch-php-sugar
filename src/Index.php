@@ -29,4 +29,12 @@ class Index implements IndexInterface
     {
         return $this->name;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

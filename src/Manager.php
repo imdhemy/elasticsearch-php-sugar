@@ -91,4 +91,16 @@ class Manager implements ManagerInterface
         $this->client = $client;
         return $this;
     }
+
+    /**
+     * @param string $name
+     * @return IndexInterface
+     * @deprecated This method will be removed on supporting PHP 8.0
+     * use @link \Imdhemy\EsSugar\Manager::createIndex()
+     */
+    public function createIndexByName(string $name): IndexInterface
+    {
+        $index = new Index($name);
+        return $this->createIndex($index);
+    }
 }

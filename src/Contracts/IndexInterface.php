@@ -3,8 +3,9 @@
 
 namespace Imdhemy\EsSugar\Contracts;
 
+use Stringable;
 
-interface IndexInterface
+interface IndexInterface extends Stringable
 {
     /**
      * @return string

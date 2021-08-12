@@ -17,6 +17,14 @@ interface ManagerInterface
     public function createIndex(IndexInterface $index): IndexInterface;
 
     /**
+     * @param string $name
+     * @return IndexInterface
+     * @deprecated This method will be removed on supporting PHP 8.0
+     * use @link \Imdhemy\EsSugar\Contracts\ManagerInterface::createIndex()
+     */
+    public function createIndexByName(string $name): IndexInterface;
+
+    /**
      * Deletes the specified index
      * @param IndexInterface $index
      * @return IndexInterface
