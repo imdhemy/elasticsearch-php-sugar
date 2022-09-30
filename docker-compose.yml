@@ -2,12 +2,11 @@ version: "3.9"
 services:
   elasticsearch:
     container_name: elasticsearch_container
-    image: elasticsearch:7.14.0
+    image: elasticsearch:${ES_VERSION:-8.4.2}
     networks:
-      - backend
+      - imdhemy-es
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "${ES_PORT:-9200}:9200"
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
@@ -15,11 +14,11 @@ services:
       - es-disk:/usr/share/elasticsearch/data
   kibana:
     container_name: kibana_container
-    image: kibana:7.14.0
+    image: kibana:${ES_VERSION:-8.4.2}
     networks:
-      - backend
+      - imdhemy-es
     ports:
-      - "5601:5601"
+      - "${KIBANA_PORT:-5601}:5601"
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     depends_on:
@@ -28,4 +27,4 @@ volumes:
   es-disk:
     driver: local
 networks:
-  backend:
+  imdhemy-es:

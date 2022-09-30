@@ -25,6 +25,9 @@
       "Imdhemy\\EsSugar\\Tests\\": "tests/"
     }
   },
+  "scripts": {
+    "env": "./bin/env.sh"
+  },
   "require": {
     "php": "^8.1",
     "ext-json": "*",
