@@ -1,5 +1,5 @@
 {
-  "name": "imdhemy/elasticsearch-php-sugar",
+  "name": "imdhemy/elasticsearch-sugar",
   "description": "The Elasticsearch PHP wrapper which makes ES sweeter for PHP developers.",
   "keywords": [
     "search",
