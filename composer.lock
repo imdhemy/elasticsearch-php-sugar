@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5fca8f180dd0838db808419f79b71df7",
+    "content-hash": "8758325ac2cd2ec897ea15219a650239",
     "packages": [
         {
             "name": "elastic/transport",
@@ -1085,6 +1085,63 @@
                 "source": "https://github.com/FakerPHP/Faker/tree/v1.20.0"
             },
             "time": "2022-07-20T13:12:54+00:00"
+        },
+        {
+            "name": "imdhemy/es-testing-utils",
+            "version": "8.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imdhemy/es-testing-utils.git",
+                "reference": "793fd7fb27b7e652717fca4db375bf893fdf70c9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imdhemy/es-testing-utils/zipball/793fd7fb27b7e652717fca4db375bf893fdf70c9",
+                "reference": "793fd7fb27b7e652717fca4db375bf893fdf70c9",
+                "shasum": ""
+            },
+            "require": {
+                "elasticsearch/elasticsearch": "^8.3",
+                "ext-json": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.10",
+                "phpunit/phpunit": "^9.5",
+                "vimeo/psalm": "^4.26"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EsUtils\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "imdhemy",
+                    "email": "imdhemy@gmail.com",
+                    "homepage": "https://imdhemy.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Elasticsearch Testing utils",
+            "homepage": "https://github.com/imdhemy/es-testing-utils",
+            "keywords": [
+                "elasticsearch",
+                "mocking",
+                "php",
+                "testing"
+            ],
+            "support": {
+                "email": "imdhemy@gmail.com",
+                "issues": "https://github.com/imdhemy/es-testing-utils/issues",
+                "source": "https://github.com/imdhemy/es-testing-utils/tree/8.0.1"
+            },
+            "time": "2022-08-23T07:33:01+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -3061,11 +3118,10 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1"
-    },
-    "platform-dev": {
+        "php": "^8.1",
         "ext-json": "*"
     },
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.1.0"
     },
