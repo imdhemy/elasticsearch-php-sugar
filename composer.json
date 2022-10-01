@@ -29,7 +29,10 @@
     "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
     "psalm": "vendor/bin/psalm --show-info=true",
     "test": "vendor/bin/phpunit --testdox",
-    "env": "./bin/env.sh"
+    "env": "./bin/env.sh",
+    "post-install-cmd": [
+      "@env"
+    ]
   },
   "require": {
     "php": "^8.1",
@@ -37,11 +40,12 @@
     "elasticsearch/elasticsearch": "^8.4"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-latest",
     "fakerphp/faker": "^1.15",
     "friendsofphp/php-cs-fixer": "^3.11",
     "imdhemy/es-testing-utils": "^8.0",
     "phpunit/phpunit": "^9.5",
+    "psalm/plugin-phpunit": "^0.17.0",
+    "roave/security-advisories": "dev-latest",
     "symfony/var-dumper": "^5.3",
     "vimeo/psalm": "^4.27"
   },
