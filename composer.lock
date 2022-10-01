@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8758325ac2cd2ec897ea15219a650239",
+    "content-hash": "97db2ed37d0e4740f55384e58712897a",
     "packages": [
         {
             "name": "elastic/transport",
@@ -1088,21 +1088,22 @@
         },
         {
             "name": "imdhemy/es-testing-utils",
-            "version": "8.0.1",
+            "version": "8.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imdhemy/es-testing-utils.git",
-                "reference": "793fd7fb27b7e652717fca4db375bf893fdf70c9"
+                "reference": "689723e39fce6919a69865fb01eb5b1d0b7b1b7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imdhemy/es-testing-utils/zipball/793fd7fb27b7e652717fca4db375bf893fdf70c9",
-                "reference": "793fd7fb27b7e652717fca4db375bf893fdf70c9",
+                "url": "https://api.github.com/repos/imdhemy/es-testing-utils/zipball/689723e39fce6919a69865fb01eb5b1d0b7b1b7a",
+                "reference": "689723e39fce6919a69865fb01eb5b1d0b7b1b7a",
                 "shasum": ""
             },
             "require": {
-                "elasticsearch/elasticsearch": "^8.3",
+                "elasticsearch/elasticsearch": "^8.4",
                 "ext-json": "*",
+                "fakerphp/faker": "^1.20",
                 "php": ">=7.4"
             },
             "require-dev": {
@@ -1113,7 +1114,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "EsUtils\\": "src/"
+                    "EsUtils\\": "src/",
+                    "Imdhemy\\EsUtils\\": "src/es-utils/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1139,9 +1141,9 @@
             "support": {
                 "email": "imdhemy@gmail.com",
                 "issues": "https://github.com/imdhemy/es-testing-utils/issues",
-                "source": "https://github.com/imdhemy/es-testing-utils/tree/8.0.1"
+                "source": "https://github.com/imdhemy/es-testing-utils/tree/8.1.0"
             },
-            "time": "2022-08-23T07:33:01+00:00"
+            "time": "2022-09-30T20:11:49+00:00"
         },
         {
             "name": "myclabs/deep-copy",
