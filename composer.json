@@ -37,6 +37,7 @@
     "elasticsearch/elasticsearch": "^8.4"
   },
   "require-dev": {
+    "roave/security-advisories": "dev-latest",
     "fakerphp/faker": "^1.15",
     "friendsofphp/php-cs-fixer": "^3.11",
     "imdhemy/es-testing-utils": "^8.0",
