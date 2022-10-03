@@ -2,18 +2,19 @@
 
 namespace Imdhemy\EsSugar\Tests\Index;
 
-use Elastic\Elasticsearch\ClientBuilder;
 use Imdhemy\EsSugar\Index\Index;
 use Imdhemy\EsSugar\Index\IndexManager;
 use Imdhemy\EsSugar\Responses\ResponseFactory;
-use PHPUnit\Framework\TestCase;
+use Imdhemy\EsSugar\Responses\ResponseFactoryInterface;
+use Imdhemy\EsSugar\Tests\TestCase;
+use Imdhemy\EsUtils\EsMocker;
 
 class IndexManagerTest extends TestCase
 {
     /**
-     * @var IndexManager
+     * @var ResponseFactoryInterface
      */
-    private IndexManager $sut;
+    private ResponseFactoryInterface $responseFactory;
 
     /**
      * @inheritDoc
@@ -22,11 +23,7 @@ class IndexManagerTest extends TestCase
     {
         parent::setUp();
 
-        $client = ClientBuilder::create()->build();
-        $client->indices()->delete(['index' => 'my_index']);
-        $responseFactory = new ResponseFactory();
-
-        $this->sut = new IndexManager($client, $responseFactory);
+        $this->responseFactory = new ResponseFactory();
     }
 
     /**
@@ -34,8 +31,12 @@ class IndexManagerTest extends TestCase
      */
     public function create(): void
     {
-        $index = new Index();
-        $response = $this->sut->create($index);
-        $this->assertNotNull($response);
+        $expected = $this->faker->esCreateIndex();
+        $client = EsMocker::mock($expected)->build();
+        $sut = new IndexManager($client, $this->responseFactory);
+
+        $index = $this->getMockForAbstractClass(Index::class);
+        $response = $sut->create($index);
+        $this->assertEquals($expected, $response->asArray());
     }
 }
