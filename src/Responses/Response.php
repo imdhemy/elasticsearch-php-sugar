@@ -12,7 +12,9 @@ class Response implements ResponseInterface
     /**
      * @param EsResponse $response
      */
-    public function __construct(private readonly EsResponse $response) { }
+    public function __construct(private readonly EsResponse $response)
+    {
+    }
 
     /**
      * Returns the response data as an array

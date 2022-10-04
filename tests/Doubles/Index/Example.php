@@ -6,5 +6,4 @@ use Imdhemy\EsSugar\Index\Index;
 
 class Example extends Index
 {
- 
 }
