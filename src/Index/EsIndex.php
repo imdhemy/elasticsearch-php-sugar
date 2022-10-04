@@ -2,6 +2,9 @@
 
 namespace Imdhemy\EsSugar\Index;
 
+use Imdhemy\EsSugar\Attributes\IndexMappings;
+use Imdhemy\EsSugar\Attributes\IndexSettings;
+
 /**
  * Elasticsearch index
  */

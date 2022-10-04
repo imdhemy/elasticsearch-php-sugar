@@ -1,13 +1,11 @@
 <?php
 
-namespace Imdhemy\EsSugar\Index;
+namespace Imdhemy\EsSugar\Attributes;
 
+use Attribute;
 use Imdhemy\EsSugar\ValueObjects\ArrayObject;
 
-/**
- * Index Mappings
- */
+#[Attribute]
 final class IndexMappings extends ArrayObject
 {
-    //
 }
