@@ -3,6 +3,8 @@
 namespace Imdhemy\EsSugar\Index;
 
 use Illuminate\Support\Str;
+use Imdhemy\EsSugar\Attributes\IndexName;
+use ReflectionClass;
 
 /**
  * Elasticsearch base index class
@@ -23,6 +25,17 @@ abstract class Index implements EsIndex
      */
     public function getName(): string
     {
+        if (null !== $this->index) {
+            return $this->index;
+        }
+
+        $reflection = new ReflectionClass($this);
+        $attributes = $reflection->getAttributes(IndexName::class);
+
+        if (isset($attributes[0])) {
+            $this->index = $attributes[0]->newInstance()->name;
+        }
+
         return $this->index ?? Str::snake(Str::pluralStudly(class_basename($this)));
     }
 
@@ -51,7 +64,7 @@ abstract class Index implements EsIndex
      *
      * @return Index
      */
-    public function setIndex(?string $index): Index
+    public function setIndex(?string $index): self
     {
         $this->index = $index;
 
