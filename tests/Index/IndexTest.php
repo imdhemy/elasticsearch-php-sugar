@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Imdhemy\EsSugar\Tests\Index;
 
+use Imdhemy\EsSugar\Attributes\IndexMappings;
 use Imdhemy\EsSugar\Attributes\IndexSettings;
 use Imdhemy\EsSugar\Index\Index;
 use Imdhemy\EsSugar\Tests\Doubles\Index\Example;
@@ -79,5 +80,43 @@ class IndexTest extends TestCase
             'number_of_replicas' => 1,
         ];
         $this->assertEquals($expected, $sut->getSettings()->getArrayCopy());
+    }
+
+    /**
+     * @test
+     */
+    public function set_mappings_accepts_an_array(): void
+    {
+        $sut = new Example();
+        $mappings = [
+            'properties' => [
+                'name' => [
+                    'type' => 'text',
+                ],
+            ],
+        ];
+
+        $sut->setMappings($mappings);
+
+        $this->assertEquals($mappings, $sut->getMappings()->getArrayCopy());
+    }
+
+    /**
+     * @test
+     */
+    public function set_mappings_accepts_an_array_object(): void
+    {
+        $sut = new Example();
+        $mappings = [
+            'properties' => [
+                'name' => [
+                    'type' => 'text',
+                ],
+            ],
+        ];
+
+        $sut->setMappings(new IndexMappings($mappings));
+
+        $this->assertEquals($mappings, $sut->getMappings()->getArrayCopy());
     }
 }

@@ -18,14 +18,25 @@ use ReflectionClass;
 abstract class Index implements EsIndex
 {
     /**
+     * Index name
+     *
      * @var string|null
      */
     protected ?string $index = null;
 
     /**
+     * Index settings
+     *
      * @var IndexSettings|null
      */
     protected ?IndexSettings $settings = null;
+
+    /**
+     * Index mappings
+     *
+     * @var IndexMappings|null
+     */
+    protected ?IndexMappings $mappings = null;
 
     /**
      * @var ReflectionClass|null
@@ -79,7 +90,7 @@ abstract class Index implements EsIndex
      */
     public function getMappings(): IndexMappings
     {
-        return new IndexMappings();
+        return $this->mappings ?? new IndexMappings();
     }
 
     /**
@@ -105,6 +116,21 @@ abstract class Index implements EsIndex
     {
         $settings = is_array($settings) ? new IndexSettings($settings) : $settings;
         $this->settings = $settings;
+
+        return $this;
+    }
+
+    /**
+     * Sets index mappings
+     *
+     * @param IndexMappings|array $mappings
+     *
+     * @return $this
+     */
+    public function setMappings(IndexMappings|array $mappings): self
+    {
+        $mappings = is_array($mappings) ? new IndexMappings($mappings) : $mappings;
+        $this->mappings = $mappings;
 
         return $this;
     }
