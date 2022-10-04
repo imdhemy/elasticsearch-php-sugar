@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Imdhemy\EsSugar\Tests\ValueObjects;
 
 use Imdhemy\EsSugar\Tests\TestCase;

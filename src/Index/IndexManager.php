@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Imdhemy\EsSugar\Index;
 
 use Elastic\Elasticsearch\Client;

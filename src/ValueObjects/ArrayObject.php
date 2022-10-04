@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Imdhemy\EsSugar\ValueObjects;
 
 use ArrayObject as BaseArrayObject;

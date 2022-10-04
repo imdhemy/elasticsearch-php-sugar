@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Imdhemy\EsSugar\Tests\Doubles\Index;
 
-use Imdhemy\EsSugar\Attributes\IndexName;
-use Imdhemy\EsSugar\Attributes\IndexSettings;
-use Imdhemy\EsSugar\Index\Index;
+use Imdhemy\EsSugar\{Attributes\IndexName, Attributes\IndexSettings, Index\Index};
 
 #[IndexName('test_index')]
 #[IndexSettings([

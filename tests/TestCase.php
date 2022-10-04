@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Imdhemy\EsSugar\Tests;
 
 use Imdhemy\EsUtils\Faker;

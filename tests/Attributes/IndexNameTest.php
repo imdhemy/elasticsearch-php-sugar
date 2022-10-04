@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Imdhemy\EsSugar\Tests\Attributes;
 
 use Imdhemy\EsSugar\Tests\Doubles\Index\IndexWithAttributes;
