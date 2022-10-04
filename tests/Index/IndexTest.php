@@ -119,4 +119,22 @@ class IndexTest extends TestCase
 
         $this->assertEquals($mappings, $sut->getMappings()->getArrayCopy());
     }
+
+    /**
+     * @test
+     */
+    public function get_mappings(): void
+    {
+        $sut = new IndexWithAttributes();
+
+        $expected = [
+            'properties' => [
+                'name' => [
+                    'type' => 'text',
+                    'analyzer' => 'standard',
+                ],
+            ],
+        ];
+        $this->assertEquals($expected, $sut->getMappings()->getArrayCopy());
+    }
 }

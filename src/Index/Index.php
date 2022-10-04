@@ -90,6 +90,16 @@ abstract class Index implements EsIndex
      */
     public function getMappings(): IndexMappings
     {
+        if (null !== $this->mappings) {
+            return $this->mappings;
+        }
+
+        $attributes = $this->getReflection()->getAttributes(IndexMappings::class);
+
+        if (isset($attributes[0])) {
+            $this->mappings = $attributes[0]->newInstance();
+        }
+
         return $this->mappings ?? new IndexMappings();
     }
 
