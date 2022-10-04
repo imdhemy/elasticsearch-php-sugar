@@ -21,5 +21,4 @@ use Imdhemy\EsSugar\{Attributes\IndexMappings, Attributes\IndexName, Attributes\
 ])]
 class IndexWithAttributes extends Index
 {
-    //
 }

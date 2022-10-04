@@ -12,8 +12,6 @@ use ReflectionClass;
 
 /**
  * Elasticsearch base index class
- *
- * @property string $index;
  */
 abstract class Index implements EsIndex
 {
