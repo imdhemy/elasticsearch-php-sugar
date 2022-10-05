@@ -150,16 +150,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v8.4.2",
+            "version": "v8.4.3",
             "source": {
                 "type": "git",
                 "url": "git@github.com:elastic/elasticsearch-php.git",
-                "reference": "5d792069f227799885c349d76cc4b6eb33cdd178"
+                "reference": "078ac89240b4c02524a4881de33b0dd8d36e60d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/5d792069f227799885c349d76cc4b6eb33cdd178",
-                "reference": "5d792069f227799885c349d76cc4b6eb33cdd178",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/078ac89240b4c02524a4881de33b0dd8d36e60d6",
+                "reference": "078ac89240b4c02524a4881de33b0dd8d36e60d6",
                 "shasum": ""
             },
             "require": {
@@ -198,7 +198,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2022-08-24T15:31:59+00:00"
+            "time": "2022-09-27T07:48:48+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2960,12 +2960,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/imdhemy/es-testing-utils.git",
-                "reference": "7cb06e59179e22d4697637ceec6ed98867ac7823"
+                "reference": "aceaf6d91789fdad044f4535b54ddcb6eaa879a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imdhemy/es-testing-utils/zipball/7cb06e59179e22d4697637ceec6ed98867ac7823",
-                "reference": "7cb06e59179e22d4697637ceec6ed98867ac7823",
+                "url": "https://api.github.com/repos/imdhemy/es-testing-utils/zipball/aceaf6d91789fdad044f4535b54ddcb6eaa879a5",
+                "reference": "aceaf6d91789fdad044f4535b54ddcb6eaa879a5",
                 "shasum": ""
             },
             "require": {
@@ -3012,7 +3012,7 @@
                 "issues": "https://github.com/imdhemy/es-testing-utils/issues",
                 "source": "https://github.com/imdhemy/es-testing-utils/tree/8.x"
             },
-            "time": "2022-10-05T13:12:03+00:00"
+            "time": "2022-10-05T20:02:37+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4089,12 +4089,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "51ff2179e48fdb0d495649a9c0681f46de777f4e"
+                "reference": "b0d3e99ce9c8ec237338a70277dd409ffcf6cedc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/51ff2179e48fdb0d495649a9c0681f46de777f4e",
-                "reference": "51ff2179e48fdb0d495649a9c0681f46de777f4e",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/b0d3e99ce9c8ec237338a70277dd409ffcf6cedc",
+                "reference": "b0d3e99ce9c8ec237338a70277dd409ffcf6cedc",
                 "shasum": ""
             },
             "conflict": {
@@ -4378,7 +4378,7 @@
                 "pressbooks/pressbooks": "<5.18",
                 "prestashop/autoupgrade": ">=4,<4.10.1",
                 "prestashop/blockwishlist": ">=2,<2.1.1",
-                "prestashop/contactform": ">1.0.1,<4.3",
+                "prestashop/contactform": ">=1.0.1,<4.3",
                 "prestashop/gamification": "<2.3.2",
                 "prestashop/prestashop": ">=1.6.0.10,<1.7.8.7",
                 "prestashop/productcomments": "<5.0.2",
@@ -4606,7 +4606,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-10-01T16:04:26+00:00"
+            "time": "2022-10-05T15:07:13+00:00"
         },
         {
             "name": "sebastian/cli-parser",

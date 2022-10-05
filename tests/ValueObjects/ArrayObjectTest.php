@@ -31,4 +31,20 @@ class ArrayObjectTest extends TestCase
 
         $this->assertFalse($sut->isEmpty());
     }
+
+    /**
+     * @test
+     */
+    public function exclude_remove_the_provided_keys(): void
+    {
+        $sut = new ArrayObject([
+            'foo' => 'bar',
+            'bar' => 'foo',
+            'baz' => 'baz',
+        ]);
+
+        $data = $sut->exclude(['foo', 'bar']);
+
+        $this->assertEquals(['baz' => 'baz'], $data->getArrayCopy());
+    }
 }

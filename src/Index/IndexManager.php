@@ -7,14 +7,16 @@ namespace Imdhemy\EsSugar\Index;
 use Elastic\Elasticsearch\Client;
 use Elastic\Elasticsearch\Response\Elasticsearch;
 use Exception;
+use Imdhemy\EsSugar\Attributes\IndexSettings;
 use Imdhemy\EsSugar\Exceptions\EsSugarException;
+use Imdhemy\EsSugar\Responses\AcknowledgedResponse;
 use Imdhemy\EsSugar\Responses\ResponseFactoryInterface;
 use Imdhemy\EsSugar\Responses\ResponseInterface;
 
 /**
  * ES Sugar Index Manager
  */
-class IndexManager implements IndexManagerInterface
+class IndexManager implements EsIndexManager
 {
     /**
      * @var Client
@@ -80,6 +82,76 @@ class IndexManager implements IndexManagerInterface
         try {
             /** @var Elasticsearch $response */
             $response = $this->client->indices()->delete($params);
+
+            return $this->responseFactory->create($response);
+        } catch (Exception $exception) {
+            throw new EsSugarException($exception->getMessage());
+        }
+    }
+
+    /**
+     * Updates index settings and mappings
+     *
+     * @param EsIndex $index
+     *
+     * @return ResponseInterface
+     */
+    public function update(EsIndex $index): ResponseInterface
+    {
+        if (! $index->getSettings()->isEmpty()) {
+            $this->updateSettings($index);
+        }
+
+        if (! $index->getMappings()->isEmpty()) {
+            $this->updateMappings($index);
+        }
+
+        return new AcknowledgedResponse();
+    }
+
+    /**
+     * Put index settings
+     *
+     * @param EsIndex $index
+     *
+     * @return ResponseInterface
+     */
+    public function updateSettings(EsIndex $index): ResponseInterface
+    {
+        $params = [
+            'index' => $index->getName(),
+            'body' => [
+                'settings' => $index->getSettings()->exclude(IndexSettings::STATIC_SETTINGS),
+            ],
+        ];
+
+        try {
+            /** @var Elasticsearch $response */
+            $response = $this->client->indices()->putSettings($params);
+
+            return $this->responseFactory->create($response);
+        } catch (Exception $exception) {
+            throw new EsSugarException($exception->getMessage());
+        }
+    }
+
+    /**
+     * Updates index mappings
+     *
+     * @param EsIndex $index
+     *
+     * @return ResponseInterface
+     */
+    public function updateMappings(EsIndex $index): ResponseInterface
+    {
+        $params = [
+            'index' => $index->getName(),
+            'body' => $index->getMappings(),
+        ];
+
+        try {
+            /** @var Elasticsearch $response */
+            $response = $this->client->indices()->putMapping($params);
 
             return $this->responseFactory->create($response);
         } catch (Exception $exception) {

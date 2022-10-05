@@ -21,4 +21,20 @@ class ArrayObject extends BaseArrayObject
     {
         return empty($this->getArrayCopy());
     }
+
+    /**
+     * Excludes the provided keys from the array and return a new ArrayObject
+     *
+     * @param array $keys
+     *
+     * @return self
+     */
+    public function exclude(array $keys): self
+    {
+        $data = $this->getArrayCopy();
+
+        $values = array_diff_key($data, array_flip($keys));
+
+        return new self($values);
+    }
 }
