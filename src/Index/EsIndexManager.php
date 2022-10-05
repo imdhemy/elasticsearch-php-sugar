@@ -30,4 +30,13 @@ interface EsIndexManager
      * @return ResponseInterface
      */
     public function delete(EsIndex $index): ResponseInterface;
+
+    /**
+     * Updates index settings and mappings
+     *
+     * @param EsIndex $index
+     *
+     * @return ResponseInterface
+     */
+    public function update(EsIndex $index): ResponseInterface;
 }
