@@ -66,4 +66,24 @@ class IndexManager implements IndexManagerInterface
             throw new EsSugarException($exception->getMessage());
         }
     }
+
+    /**
+     * Deletes an index
+     *
+     * @param EsIndex $index
+     *
+     * @return ResponseInterface
+     */
+    public function delete(EsIndex $index): ResponseInterface
+    {
+        $params = ['index' => $index->getName()];
+        try {
+            /** @var Elasticsearch $response */
+            $response = $this->client->indices()->delete($params);
+
+            return $this->responseFactory->create($response);
+        } catch (Exception $exception) {
+            throw new EsSugarException($exception->getMessage());
+        }
+    }
 }

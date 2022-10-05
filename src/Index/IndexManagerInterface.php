@@ -21,4 +21,13 @@ interface IndexManagerInterface
      * @return ResponseInterface
      */
     public function create(EsIndex $index): ResponseInterface;
+
+    /**
+     * Deletes an index
+     *
+     * @param EsIndex $index
+     *
+     * @return ResponseInterface
+     */
+    public function delete(EsIndex $index): ResponseInterface;
 }
