@@ -10,17 +10,18 @@ composer require imdhemy/elasticsearch-sugar
 
 ## TODO
 
-- [x] Project setup
-- [ ] Index Manager
+- [x] **Project setup**
+- [ ] **Index Manager**
     - [x] Create Index
     - [x] Delete Index
     - [x] Put Index settings
     - [x] Put Index mappings
     - [ ] Index API
     - [ ] Get Index
-    - [ ] Retrieve index
+    - [ ] _Retrieve index_
         - [ ] Get Index settings
         - [ ] Get Index mappings
+- [ ] **Documents**
 
 ## License
 
