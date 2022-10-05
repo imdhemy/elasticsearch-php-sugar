@@ -30,6 +30,7 @@
     "psalm": "vendor/bin/psalm --show-info=true",
     "test": "vendor/bin/phpunit --testdox",
     "env": "./bin/env.sh",
+    "psalm:unused": "vendor/bin/psalm --find-dead-code",
     "post-install-cmd": [
       "@env"
     ]
