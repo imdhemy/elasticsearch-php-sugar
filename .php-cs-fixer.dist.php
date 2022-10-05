@@ -1,7 +1,6 @@
 <?php
-/**
- * This file is used to configure the PHP CS Fixer tool.
- */
+
+declare(strict_types=1);
 
 use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
