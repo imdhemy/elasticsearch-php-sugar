@@ -62,6 +62,20 @@ abstract class Index implements EsIndex
     }
 
     /**
+     * Gets the reflection class
+     *
+     * @return ReflectionClass
+     */
+    private function getReflection(): ReflectionClass
+    {
+        if (null === $this->reflection) {
+            $this->reflection = new ReflectionClass($this);
+        }
+
+        return $this->reflection;
+    }
+
+    /**
      * Gets index settings
      *
      * @return IndexSettings
@@ -79,6 +93,21 @@ abstract class Index implements EsIndex
         }
 
         return $this->settings ?? new IndexSettings();
+    }
+
+    /**
+     * Sets index settings
+     *
+     * @param IndexSettings|array $settings
+     *
+     * @return $this
+     */
+    public function setSettings(IndexSettings|array $settings): self
+    {
+        $settings = is_array($settings) ? new IndexSettings($settings) : $settings;
+        $this->settings = $settings;
+
+        return $this;
     }
 
     /**
@@ -102,33 +131,6 @@ abstract class Index implements EsIndex
     }
 
     /**
-     * @param string|null $index
-     *
-     * @return Index
-     */
-    public function setIndex(?string $index): self
-    {
-        $this->index = $index;
-
-        return $this;
-    }
-
-    /**
-     * Sets index settings
-     *
-     * @param IndexSettings|array $settings
-     *
-     * @return $this
-     */
-    public function setSettings(IndexSettings|array $settings): self
-    {
-        $settings = is_array($settings) ? new IndexSettings($settings) : $settings;
-        $this->settings = $settings;
-
-        return $this;
-    }
-
-    /**
      * Sets index mappings
      *
      * @param IndexMappings|array $mappings
@@ -144,16 +146,14 @@ abstract class Index implements EsIndex
     }
 
     /**
-     * Gets the reflection class
+     * @param string|null $index
      *
-     * @return ReflectionClass
+     * @return Index
      */
-    private function getReflection(): ReflectionClass
+    public function setIndex(?string $index): self
     {
-        if (null === $this->reflection) {
-            $this->reflection = new ReflectionClass($this);
-        }
+        $this->index = $index;
 
-        return $this->reflection;
+        return $this;
     }
 }
