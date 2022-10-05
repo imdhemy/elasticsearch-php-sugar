@@ -14,7 +14,7 @@ use Imdhemy\EsSugar\Responses\ResponseInterface;
 /**
  * ES Sugar Index Manager
  */
-class IndexManager implements IndexManagerInterface
+class IndexManager implements EsIndexManager
 {
     /**
      * @var Client

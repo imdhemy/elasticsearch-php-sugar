@@ -7,11 +7,11 @@ namespace Imdhemy\EsSugar\Index;
 use Imdhemy\EsSugar\Responses\ResponseInterface;
 
 /**
- * Index Manager Interface
+ * Elasticsearch Index Manager Interface
  * Index management operations allows to manage the indices in the cluster,
  * such as create, delete and updating index mappings and settings.
  */
-interface IndexManagerInterface
+interface EsIndexManager
 {
     /**
      * Creates an index
