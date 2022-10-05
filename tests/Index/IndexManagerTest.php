@@ -40,6 +40,13 @@ class IndexManagerTest extends TestCase
      */
     public function delete(): void
     {
+        $expected = $this->faker->esDeleteIndex();
+        $client = EsMocker::mock($expected)->build();
+        $sut = new IndexManager($client, $this->responseFactory);
+
+        $index = $this->getMockForAbstractClass(Index::class);
+        $response = $sut->delete($index);
+        $this->assertEquals($expected, $response->asArray());
     }
 
     /**
