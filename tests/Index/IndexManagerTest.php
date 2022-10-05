@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Imdhemy\EsSugar\Tests\Index;
 
+use Imdhemy\EsSugar\Attributes\IndexMappings;
 use Imdhemy\EsSugar\Attributes\IndexSettings;
 use Imdhemy\EsSugar\Index\EsIndex;
 use Imdhemy\EsSugar\Index\Index;
@@ -23,22 +24,6 @@ class IndexManagerTest extends TestCase
     /**
      * @test
      */
-    public function create(): EsIndex
-    {
-        $expected = $this->faker->esCreateIndex();
-        $client = EsMocker::mock($expected)->build();
-        $sut = new IndexManager($client, $this->responseFactory);
-
-        $index = $this->getMockForAbstractClass(Index::class);
-        $response = $sut->create($index);
-        $this->assertEquals($expected, $response->asArray());
-
-        return $index;
-    }
-
-    /**
-     * @test
-     */
     public function delete(): void
     {
         $expected = $this->faker->esDeleteIndex();
@@ -52,6 +37,7 @@ class IndexManagerTest extends TestCase
 
     /**
      * @test
+     * @TODO Improve this test to check the request params
      */
     public function update_updates_index_settings(): void
     {
@@ -68,6 +54,47 @@ class IndexManagerTest extends TestCase
 
         $response = $sut->update($index);
         $this->assertEquals($expected, $response->asArray());
+    }
+
+    /**
+     * @test
+     */
+    public function update_updates_index_mappings(): void
+    {
+        $expected = $this->faker->esPutIndexMappings();
+        $client = EsMocker::mock($expected)->build();
+        $sut = new IndexManager($client, $this->responseFactory);
+
+        $index = $this->getMockForAbstractClass(Index::class);
+        $index->setMappings(
+            new IndexMappings([
+                'properties' => [
+                    'name' => [
+                        'type' => 'text',
+                        'analyzer' => 'standard',
+                    ],
+                ],
+            ])
+        );
+
+        $response = $sut->update($index);
+        $this->assertEquals($expected, $response->asArray());
+    }
+
+    /**
+     * @test
+     */
+    public function create(): EsIndex
+    {
+        $expected = $this->faker->esCreateIndex();
+        $client = EsMocker::mock($expected)->build();
+        $sut = new IndexManager($client, $this->responseFactory);
+
+        $index = $this->getMockForAbstractClass(Index::class);
+        $response = $sut->create($index);
+        $this->assertEquals($expected, $response->asArray());
+
+        return $index;
     }
 
     /**

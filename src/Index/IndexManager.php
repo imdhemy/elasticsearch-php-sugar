@@ -9,6 +9,7 @@ use Elastic\Elasticsearch\Response\Elasticsearch;
 use Exception;
 use Imdhemy\EsSugar\Attributes\IndexSettings;
 use Imdhemy\EsSugar\Exceptions\EsSugarException;
+use Imdhemy\EsSugar\Responses\AcknowledgedResponse;
 use Imdhemy\EsSugar\Responses\ResponseFactoryInterface;
 use Imdhemy\EsSugar\Responses\ResponseInterface;
 
@@ -97,7 +98,15 @@ class IndexManager implements EsIndexManager
      */
     public function update(EsIndex $index): ResponseInterface
     {
-        return $this->updateSettings($index);
+        if (! $index->getSettings()->isEmpty()) {
+            $this->updateSettings($index);
+        }
+
+        if (! $index->getMappings()->isEmpty()) {
+            $this->updateMappings($index);
+        }
+
+        return new AcknowledgedResponse();
     }
 
     /**
@@ -119,6 +128,30 @@ class IndexManager implements EsIndexManager
         try {
             /** @var Elasticsearch $response */
             $response = $this->client->indices()->putSettings($params);
+
+            return $this->responseFactory->create($response);
+        } catch (Exception $exception) {
+            throw new EsSugarException($exception->getMessage());
+        }
+    }
+
+    /**
+     * Updates index mappings
+     *
+     * @param EsIndex $index
+     *
+     * @return ResponseInterface
+     */
+    public function updateMappings(EsIndex $index): ResponseInterface
+    {
+        $params = [
+            'index' => $index->getName(),
+            'body' => $index->getMappings(),
+        ];
+
+        try {
+            /** @var Elasticsearch $response */
+            $response = $this->client->indices()->putMapping($params);
 
             return $this->responseFactory->create($response);
         } catch (Exception $exception) {
