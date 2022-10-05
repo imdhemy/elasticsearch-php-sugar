@@ -12,10 +12,16 @@ use Elastic\Elasticsearch\Response\Elasticsearch as EsResponse;
 class Response implements ResponseInterface
 {
     /**
+     * @var EsResponse
+     */
+    private readonly EsResponse $response;
+
+    /**
      * @param EsResponse $response
      */
-    public function __construct(private readonly EsResponse $response)
+    public function __construct(EsResponse $response)
     {
+        $this->response = $response;
     }
 
     /**
