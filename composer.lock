@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "77a7b148d1fbbe5ade346abaa7fb8522",
+    "content-hash": "d17de0e36eadf551507c85e9c83a3ffb",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2956,16 +2956,16 @@
         },
         {
             "name": "imdhemy/es-testing-utils",
-            "version": "8.x-dev",
+            "version": "8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imdhemy/es-testing-utils.git",
-                "reference": "aceaf6d91789fdad044f4535b54ddcb6eaa879a5"
+                "reference": "c451a212999a1cc7ca9c6a601797d5e4b82dc506"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imdhemy/es-testing-utils/zipball/aceaf6d91789fdad044f4535b54ddcb6eaa879a5",
-                "reference": "aceaf6d91789fdad044f4535b54ddcb6eaa879a5",
+                "url": "https://api.github.com/repos/imdhemy/es-testing-utils/zipball/c451a212999a1cc7ca9c6a601797d5e4b82dc506",
+                "reference": "c451a212999a1cc7ca9c6a601797d5e4b82dc506",
                 "shasum": ""
             },
             "require": {
@@ -2979,7 +2979,6 @@
                 "phpunit/phpunit": "^9.5",
                 "vimeo/psalm": "^4.26"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -3010,9 +3009,9 @@
             "support": {
                 "email": "imdhemy@gmail.com",
                 "issues": "https://github.com/imdhemy/es-testing-utils/issues",
-                "source": "https://github.com/imdhemy/es-testing-utils/tree/8.x"
+                "source": "https://github.com/imdhemy/es-testing-utils/tree/8.2.0"
             },
-            "time": "2022-10-05T20:02:37+00:00"
+            "time": "2022-10-06T09:10:55+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -7002,7 +7001,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "imdhemy/es-testing-utils": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
