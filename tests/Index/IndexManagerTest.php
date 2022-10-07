@@ -12,10 +12,13 @@ use Imdhemy\EsSugar\Index\IndexManager;
 use Imdhemy\EsSugar\Responses\ResponseFactory;
 use Imdhemy\EsSugar\Responses\ResponseFactoryInterface;
 use Imdhemy\EsSugar\Tests\TestCase;
+use Imdhemy\EsUtils\Assertions\IndexAssertions;
 use Imdhemy\EsUtils\EsMocker;
 
 class IndexManagerTest extends TestCase
 {
+    use IndexAssertions;
+
     /**
      * @var ResponseFactoryInterface
      */
@@ -27,22 +30,24 @@ class IndexManagerTest extends TestCase
     public function delete(): void
     {
         $expected = $this->faker->esDeleteIndex();
-        $client = EsMocker::mock($expected)->build();
+        $history = [];
+        $client = EsMocker::mock($expected)->build($history);
         $sut = new IndexManager($client, $this->responseFactory);
 
         $index = $this->getMockForAbstractClass(Index::class);
         $response = $sut->delete($index);
         $this->assertEquals($expected, $response->asArray());
+        $this->assertRequestedDeleteIndex($history, $index->getName());
     }
 
     /**
      * @test
-     * @TODO Improve this test to check the request params
      */
     public function update_updates_index_settings(): void
     {
         $expected = $this->faker->esPutIndexSettings();
-        $client = EsMocker::mock($expected)->build();
+        $history = [];
+        $client = EsMocker::mock($expected)->build($history);
         $sut = new IndexManager($client, $this->responseFactory);
 
         $index = $this->getMockForAbstractClass(Index::class);
@@ -53,7 +58,9 @@ class IndexManagerTest extends TestCase
         $index->setSettings($indexSettings);
 
         $response = $sut->update($index);
+
         $this->assertEquals($expected, $response->asArray());
+        $this->assertRequestedPutIndexSettingsWith($history, $index->getName(), $indexSettings->getArrayCopy());
     }
 
     /**
@@ -62,7 +69,8 @@ class IndexManagerTest extends TestCase
     public function update_updates_index_mappings(): void
     {
         $expected = $this->faker->esPutIndexMappings();
-        $client = EsMocker::mock($expected)->build();
+        $history = [];
+        $client = EsMocker::mock($expected)->build($history);
         $sut = new IndexManager($client, $this->responseFactory);
 
         $index = $this->getMockForAbstractClass(Index::class);
@@ -78,7 +86,9 @@ class IndexManagerTest extends TestCase
         );
 
         $response = $sut->update($index);
+
         $this->assertEquals($expected, $response->asArray());
+        $this->assertRequestedPutIndexMappingsWith($history, $index->getName(), $index->getMappings()->getArrayCopy());
     }
 
     /**
@@ -87,12 +97,21 @@ class IndexManagerTest extends TestCase
     public function create(): EsIndex
     {
         $expected = $this->faker->esCreateIndex();
-        $client = EsMocker::mock($expected)->build();
+        $history = [];
+        $client = EsMocker::mock($expected)->build($history);
         $sut = new IndexManager($client, $this->responseFactory);
 
         $index = $this->getMockForAbstractClass(Index::class);
+
         $response = $sut->create($index);
+
         $this->assertEquals($expected, $response->asArray());
+        $this->assertRequestedCreateIndex(
+            $history,
+            $index->getName(),
+            $index->getSettings()->getArrayCopy(),
+            $index->getMappings()->getArrayCopy()
+        );
 
         return $index;
     }
