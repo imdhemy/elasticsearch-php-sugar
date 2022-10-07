@@ -10,5 +10,4 @@ use Imdhemy\EsSugar\ValueObjects\ArrayObject;
 #[Attribute]
 final class IndexMappings extends ArrayObject
 {
-    //
 }

@@ -20,7 +20,7 @@ abstract class Index implements EsIndex
      *
      * @var string|null
      */
-    protected ?string $index = null;
+    protected ?string $name = null;
 
     /**
      * Index settings
@@ -48,17 +48,29 @@ abstract class Index implements EsIndex
      */
     public function getName(): string
     {
-        if (null !== $this->index) {
-            return $this->index;
+        if (null !== $this->name) {
+            return $this->name;
         }
 
         $attributes = $this->getReflection()->getAttributes(IndexName::class);
 
         if (isset($attributes[0])) {
-            $this->index = $attributes[0]->newInstance()->name;
+            $this->name = $attributes[0]->newInstance()->name;
         }
 
-        return $this->index ?? Str::snake(Str::pluralStudly(class_basename($this)));
+        return $this->name ?? Str::snake(Str::pluralStudly(class_basename($this)));
+    }
+
+    /**
+     * @param string|null $name
+     *
+     * @return Index
+     */
+    public function setName(?string $name = null): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -141,18 +153,6 @@ abstract class Index implements EsIndex
     {
         $mappings = is_array($mappings) ? new IndexMappings($mappings) : $mappings;
         $this->mappings = $mappings;
-
-        return $this;
-    }
-
-    /**
-     * @param string|null $index
-     *
-     * @return Index
-     */
-    public function setIndex(?string $index): self
-    {
-        $this->index = $index;
 
         return $this;
     }

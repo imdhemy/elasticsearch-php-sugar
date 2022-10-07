@@ -31,7 +31,7 @@ class IndexTest extends TestCase
      */
     public function get_name_uses_index_attribute_if_exists(Index $sut): void
     {
-        $sut->setIndex('example');
+        $sut->setName('example');
 
         $this->assertEquals('example', $sut->getName());
     }
